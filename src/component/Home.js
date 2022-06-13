@@ -7,9 +7,10 @@ import { NavLink } from "react-router-dom";
 const Home = () => {
 
   const [inputValue, setinputValue] = useState({
-    name:"",
+    firstname:"",
+    lastname:"",
     email:"",
-    date:"",
+    mobile:"",
     password:""
   })
 
@@ -29,20 +30,21 @@ console.log(inputValue);
     const addData= (e)=>{
       e.preventDefault()
       
-      const {name, email, date, password} = inputValue;
+      const {firstname, lastname, email, mobile, password} = inputValue;
 
-      if (!email.includes("@")) {
+       if(firstname === ""){
+        alert("Please enter the Firstname")
+      }else if(lastname === ""){
+        alert("Please enter Last name")
+      }else if (!email.includes("@")) {
         alert("Please enter Correct Email")
-      }else if(name === ""){
-        alert("Please enter name")
-      } else if(date === ""){
-        alert("Please enter Date")
+      }else if(mobile === ""){
+        alert("Please Enter Mobile Number")
       }else if(password.length < 5){
-        alert("plese enter 5 more than chareter")
+        alert("Please Enter Your Password More than 5 Length")
       }else{
-        console.log("Data Added Successfully");
+        console.log("Data Added Successfully")
           localStorage.setItem("usersohail", JSON.stringify([...data, inputValue]))
-        // console.log("data added submit succesfully");
       }
     };
 
@@ -57,16 +59,22 @@ console.log(inputValue);
           <div className="left_data p-5" style={{width:"100%"}}>
             <h3 className="text-center col-lg-6">Sign Up</h3>
             <Form>
+              
+
               <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
-                <Form.Control type="email" name="email" onChange={getData} placeholder="Enter Email" />  
+                <Form.Control type="text" name="firstname" onChange={getData} placeholder="Enter Your First Name" />  
               </Form.Group>
 
               <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
-                <Form.Control type="text" onChange={getData} name="name" placeholder="Enter Your Name" />  
+                <Form.Control type="text"  name="lastname" onChange={getData} placeholder="Enter Your Last Name" />  
               </Form.Group>
 
               <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
-                <Form.Control type="date" name="date" onChange={getData}/>  
+                <Form.Control type="email" name="email" onChange={getData} placeholder="Enter Your Email Address" />  
+              </Form.Group>
+
+              <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
+                <Form.Control type="text" name="mobile" onChange={getData} placeholder="Enter Your Mobile No."/>  
               </Form.Group>
 
               <Form.Group className="mb-3 col-lg-6" controlId="formBasicPassword">
