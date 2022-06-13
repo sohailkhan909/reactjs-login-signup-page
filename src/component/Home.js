@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Sign_Img from "./Sign_Img";
+import { NavLink } from "react-router-dom";
 
 const Home = () => {
 
@@ -14,13 +15,9 @@ const Home = () => {
 
   const [data, setData] = useState([]);
 
-
-
-
 console.log(inputValue);
     const getData = (e)=>{
   const {value, name} = e.target;
-
 
       setinputValue(()=>{
         return{
@@ -43,21 +40,18 @@ console.log(inputValue);
       }else if(password.length < 5){
         alert("plese enter 5 more than chareter")
       }else{
+        console.log("Data Added Successfully");
           localStorage.setItem("usersohail", JSON.stringify([...data, inputValue]))
         // console.log("data added submit succesfully");
       }
-
-
-
-
-
-
     };
 
 
   return (
     <>
-    {/* firstname, lastname, email, password, mobile no. */}
+   {/* signup ===> firstname, lastname, email, password, mobile no. */}
+      {/* login ==>email/ mobileno. , password */}
+      
       <div className="container mt-3">
         <section className="d-flex justify-content-between">
           <div className="left_data p-5" style={{width:"100%"}}>
@@ -82,7 +76,7 @@ console.log(inputValue);
                 Submit
               </Button>
             </Form>
-            <p className="mt-3">Already Have u Account <span>Login</span></p>
+            <p className="mt-3">Already Have u Account <span><NavLink to="/login">Login</NavLink></span></p>
           </div>
             <Sign_Img/>
         </section>
